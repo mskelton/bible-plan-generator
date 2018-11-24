@@ -1,0 +1,4 @@
+__pycache__/
+.vscode/
+config/esv.json
+config/secrets.json
