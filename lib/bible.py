@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import math
@@ -7,7 +8,9 @@ from trello import TrelloClient
 
 from books import books
 
-with open('esv-counts.json', 'r') as bible_file:
+dir_name = os.path.dirname(__file__)
+bible_path = os.path.join(dir_name, '..', 'config', 'esv-counts.json')
+with open(bible_path, 'r') as bible_file:
     BIBLE = json.load(bible_file)
 
 # Constants
@@ -152,14 +155,14 @@ def print_plan(plan: list) -> None:
 
 def export_plan_to_trello(plan: list) -> None:
     # Get the Trello API keys
-    with open('secrets.json', 'r') as secrets_file:
+    with open(os.path.join(dir_name, '..', 'config', 'secrets.json'), 'r') as secrets_file:
         secrets = json.load(secrets_file)
 
     # Create the Trello client
     client = TrelloClient(
-        api_key=secrets.api_key,
-        token=secrets.token,
-        token_secret=secrets.token_secret
+        api_key=secrets['api_key'],
+        token=secrets['token'],
+        token_secret=secrets['token_secret']
     )
 
     # Create the new board
