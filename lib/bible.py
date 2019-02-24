@@ -223,8 +223,8 @@ def main() -> None:
         if is_last_chapter(book, chapter):
             break
 
-    print_plan(plan)
-    # export_plan_to_trello(plan)
+    # print_plan(plan)
+    export_plan_to_trello(plan)
 
 
 if __name__ == '__main__':
